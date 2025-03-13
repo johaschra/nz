@@ -69,6 +69,18 @@
             <a href="https://lizzie2911.github.io/nz/">nächste Etappe</a>
         </nav>
     </footer>
+
+
+
+     <!-- weil Java code und nicht html code
+      L. steht für Leaflet, View([long, lat], zoomfaktor)-->
+      <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    </script>
 </body>
 
 </html>
