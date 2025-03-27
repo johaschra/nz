@@ -15,6 +15,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Marker zeichne 
 let marker = L.marker([-42.114383, 171.327320]).addTo(map);
 marker.bindPopup(`
-    <b>Hello world!</b>
-    <br>I am a popup at ${lat.toFixed(5)} / ${lon.toFixed(5)}
+    <h2>Pancake Rocks</h2>
+    <ul>
+            <li>Geogr. Breite: ${lat.toFixed(5)}</li>
+            <li>Geogr. Länge: ${lon.toFixed(5)}</li>
+        </ul>
     `).openPopup();
+
+
