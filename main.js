@@ -25,7 +25,7 @@ const STOPS = [
         title: "Bay of Islands",
         user: "Ellinnaa",
         lat:-35.183333,
-        long:174.166667,
+        lng:174.166667,
         zoom:11,
     },
     {
@@ -80,7 +80,7 @@ const STOPS = [
         nr: 9,
         title: "Wellington",
         user: "cs4151",
-        lat: "-41.2875",
+        lat: -41.2875,
         lng: 174.776111,
         zoom: 12,
     },
@@ -166,7 +166,7 @@ const STOPS = [
     },
     {
         nr: 24,
-        titel: "Moeraki Boulders",
+        title: "Moeraki Boulders",
         user: "StephanPumpernik",
         lat: -45.345275,
         lng: 170.826061,
@@ -181,7 +181,7 @@ const STOPS = [
         user: "PriPh625",
     },
     {
-    title: "Mount Cook",
+        title: "Mount Cook",
         nr: 26,
         user: "Basti-10",
         zoom: 13,
@@ -201,6 +201,10 @@ const STOPS = [
     ];
     
 
+//loop über Etappen
+
+
+
 // Karte initialisieren
 let map = L.map('map').setView([stop.lat, stop.lon], stop.zoom);
 
@@ -211,13 +215,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Marker zeichne 
-let marker = L.marker([stop.lat, stop.lon]).addTo(map);
-marker.bindPopup(`
-    <h2>${stop.title}</h2>
-    <ul>
-            <li>Geogr. Breite: ${stop.lat.toFixed(5)}°</li>
-            <li>Geogr. Länge: ${stop.lon.toFixed(5)}°</li>
+
+for (let i=0; i<STOPS.length; i++) {
+    console.log(i,STOPS[i], STOPS[i].title)
+    let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
+    marker.bindPopup(`
+        <h2>${STOPS[i].title}</h2>
+        <ul>
+            <li>Geogr. Breite: ${STOPS[i].lat}°</li>
+            <li>Geogr. Länge: ${STOPS[i].lng}°</li>
         </ul>
-    `).openPopup();
+        `).openPopup();
+}
+
+
 
 
