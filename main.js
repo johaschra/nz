@@ -1,7 +1,15 @@
 
-let lat = -42.114383
-let lon = 171.327320
-let zoom = 11
+let lat = -42.114383;
+let lon = 171.327320;
+let zoom = 11;
+
+let stop = {
+    nr: 7,
+    title: "Tongariro Nationalpark",
+    lat: lat,
+    lon: lon,
+    zoom: zoom,
+};
 
 // Karte initialisieren
 let map = L.map('map').setView([lat, lon], zoom);
