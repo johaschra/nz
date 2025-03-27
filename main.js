@@ -1,13 +1,7 @@
 
 
 
-let stop = {
-    nr: 13,
-    title: "Pancake rocks (Punakaiki)",
-    lat: -42.114383,
-    lon: 171.327320,
-    zoom: 11,
-};
+
 
 
 const STOPS = [
@@ -24,9 +18,9 @@ const STOPS = [
         nr: 2,
         title: "Bay of Islands",
         user: "Ellinnaa",
-        lat:-35.183333,
-        lng:174.166667,
-        zoom:11,
+        lat: -35.183333,
+        lng: 174.166667,
+        zoom: 11,
     },
     {
         nr: 3,
@@ -36,10 +30,10 @@ const STOPS = [
         lng: 174.8,
         zoom: 13,
     },
-     {  
+    {
         nr: 4,
         title: "Cormandel Peninsula",
-        usr:"Gregorysprenger2001",
+        user: "Gregorysprenger2001",
         lat: -37.882778,
         lng: 175.636667,
         zoom: 11,
@@ -85,14 +79,14 @@ const STOPS = [
         zoom: 12,
     },
     {
-      title: "Picton",
-      user: "pauly0602",
-      nr: 10,
-      lat: -41.29,
-      lng: 174.0,
-      zoom: 11,
-      },
-    {  
+        title: "Picton",
+        user: "pauly0602",
+        nr: 10,
+        lat: -41.29,
+        lng: 174.0,
+        zoom: 11,
+    },
+    {
         nr: 11,
         title: "Nelson",
         user: "lujehle",
@@ -125,12 +119,12 @@ const STOPS = [
         zoom: 13,
     },
     {
-      nr: 17,
-      title: "Queenstown",
-      user: "Kathleenuniibk",
-      lat: -45.031389,
-      lng: 168.660833,
-      zoom:14,
+        nr: 17,
+        title: "Queenstown",
+        user: "Kathleenuniibk",
+        lat: -45.031389,
+        lng: 168.660833,
+        zoom: 14,
     },
     {
         nr: 18,
@@ -196,17 +190,17 @@ const STOPS = [
         lng: 173.682222,
         zoom: 11
     },
-    
-    
-    ];
-    
+
+
+];
+
 
 //loop über Etappen
 
 
 
 // Karte initialisieren
-let map = L.map('map').setView([stop.lat, stop.lon], stop.zoom);
+let map = L.map('map');
 
 //Hintergrundkarte definierten
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -216,16 +210,23 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Marker zeichne 
 
-for (let i=0; i<STOPS.length; i++) {
-    console.log(i,STOPS[i], STOPS[i].title)
+for (let i = 0; i < STOPS.length; i++) {
+    console.log(i, STOPS[i], STOPS[i].title)
     let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
     marker.bindPopup(`
         <h2>${STOPS[i].title}</h2>
         <ul>
-            <li>Geogr. Breite: ${STOPS[i].lat}°</li>
-            <li>Geogr. Länge: ${STOPS[i].lng}°</li>
+            <li>Geogr. Breite: ${STOPS[i].lat.toFixed(4)}°</li>
+            <li>Geogr. Länge: ${STOPS[i].lng.toFixed(4)}°</li>
         </ul>
-        `).openPopup();
+        `);
+
+    // Auf eigene Etappe blicken und popup öffnen
+    if (STOPS[i].user == "johaschra") {
+        console.log(`Meine Etappe ${STOPS[i].user}`)
+        map.setView([STOPS[i].lat, STOPS[i].lng], STOPS[i].zoom);
+        marker.openPopup()
+    }
 }
 
 
