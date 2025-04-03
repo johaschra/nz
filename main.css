@@ -1,7 +1,7 @@
 /* CSS-Stile für die Neuseelandreise */
- 
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:ital@0;1&family=Roboto:wght@300&display=swap');
- 
+
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
@@ -54,6 +54,11 @@ article figure>img {
     height: 600px;
     border: 1px solid silver;
     margin: auto;
+}
+
+#pulldown {
+    margin-left: 5%;
+    margin-top: 1em;
 }
 
 footer {
