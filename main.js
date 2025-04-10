@@ -202,11 +202,15 @@ const STOPS = [
 // Karte initialisieren
 let map = L.map('map');
 
-//Hintergrundkarte definierten
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+
+
+//Layer control
+L.control.layers({
+    "OSM Mapnik": L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map),
+    "Open Topo Map": L.tileLayer.provider('OpenTopoMap'),
+    "Esri World Imagery":L.tileLayer.provider('Esri.WorldImagery'),
+
+})
 
 // Marker zeichne 
 
@@ -237,7 +241,7 @@ for (let i = 0; i < STOPS.length; i++) {
 }
 
 // Maßstab
-L.control.scale({imperial: false}).addTo(map);
+L.control.scale({ imperial: false }).addTo(map);
 
 
 // auf Änderungen beim Pulldown reagieren
