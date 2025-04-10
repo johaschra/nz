@@ -195,28 +195,31 @@ const STOPS = [
 ];
 
 
-//loop über Etappen
-
-
-
 // Karte initialisieren
 let map = L.map('map');
 
-
+// Overlays definieren
+let overlays = {
+    etappen_marker: L.layerGroup().addTo(map),
+}
 
 //Layer control
 L.control.layers({
     "OSM Mapnik": L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map),
     "Open Topo Map": L.tileLayer.provider('OpenTopoMap'),
-    "Esri World Imagery":L.tileLayer.provider('Esri.WorldImagery'),
+    "Esri World Imagery": L.tileLayer.provider('Esri.WorldImagery'),
 
-})
+}, {
+    "Etappen": overlays.etappen_marker
+}).addTo(map);
 
-// Marker zeichne 
+
+// Marker zeichne in Loop
 
 for (let i = 0; i < STOPS.length; i++) {
     console.log(i, STOPS[i], STOPS[i].title)
     let marker = L.marker([STOPS[i].lat, STOPS[i].lng]).addTo(map);
+    marker.addTo(overlays.etappen_marker); //zu overlay hinzufügen
     marker.bindPopup(`
         <h2>${STOPS[i].title}</h2>
         <ul>
@@ -240,7 +243,7 @@ for (let i = 0; i < STOPS.length; i++) {
 
 }
 
-// Maßstab
+// Maßstab zeichnen
 L.control.scale({ imperial: false }).addTo(map);
 
 
